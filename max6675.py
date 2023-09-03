@@ -8,7 +8,7 @@ class MAX6675(object):
      - The [GPIO Library](https://code.google.com/p/raspberry-gpio-python/) (Already on most Raspberry Pi OS builds)
      - A [Raspberry Pi](http://www.raspberrypi.org/)
     '''
-    def __init__(self, cs_pin, clock_pin, data_pin, units = "c", board = GPIO.BCM):
+    def __init__(self, cs_pin, clock_pin, data_pin, units = "c", board = GPIO.BOARD):
         '''Initialize Soft (Bitbang) SPI bus
         Parameters:
         - cs_pin:    Chip Select (CS) / Slave Select (SS) pin (Any GPIO)  
@@ -92,6 +92,7 @@ class MAX6675(object):
         '''Selective GPIO cleanup'''
         GPIO.setup(self.cs_pin, GPIO.IN)
         GPIO.setup(self.clock_pin, GPIO.IN)
+        GPIO.cleanup()
 
 class MAX6675Error(Exception):
      def __init__(self, value):
